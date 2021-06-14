@@ -12,7 +12,7 @@ const milliEl = document.querySelector(".millisecond");
 const now = new Date();
 // console.log(now);
 
-const eventDate = new Date(2022, 0, 1);
+const eventDate = new Date(2021, 6, 15);
 // console.log(eventDate);
 
 const timeIntervel = (date1, date2) => {
