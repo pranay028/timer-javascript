@@ -40,7 +40,12 @@ closeEl.addEventListener('click', function(){
 //     popupEl.classList.add('hidden');
 // })
 
+<<<<<<< HEAD
 let eventText, date, time;
+=======
+const eventDate = new Date(2021, 6, 10);
+// console.log(eventDate);
+>>>>>>> 79ebd086e0b95e191248521c066ade71d938eb03
 
 const now = new Date();
 // console.log(now);
