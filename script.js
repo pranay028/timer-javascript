@@ -36,6 +36,7 @@ closeEl.addEventListener('click', function(){
     
 })
 
+
 // bodyEl.addEventListener('click',function(){
 //     popupEl.classList.add('hidden');
 // })
@@ -56,7 +57,7 @@ const min = 60;
 const timeIntervel = (date1, date2) => (date2 - date1)/1000;
 
 let timer = timeIntervel(now, eventDate);
-console.log(timer);
+// console.log(timer);
 const tick = function(){
     const dayout = String(Math.floor(timer / (60 * 60 * 24))).padStart(2, 0);
     const hourout = `${Math.floor((timer - dayout * day)/hour)}`.padStart(2, 0);
@@ -82,50 +83,33 @@ submitEl.addEventListener('click', function(e){
     eventText = inputEventEl.value;
     date = (inputDateEl.value === "") ? [now.getFullYear(),now.getMonth(),now.getDate()] : (inputDateEl.value).split("-");
     time = inputTimeEl.value.split(":");
-    eventEl.textContent = eventText;
+    
     date[1] = date[1] - 1;
     // console.log(eventText, date , time);
-    console.log(date);
-    console.log(time);
+    // console.log(date);
+    // console.log(time);
 
     // console.log(new Date(...date));
     console.log(new Date(...date,...time));
     eventDate = new Date(...date,...time);
-    console.log(eventDate);
+    // console.log(eventDate);
     
     
 
     timer = timeIntervel(now, eventDate);
-    console.log(timer);
+    // console.log(timer);
     if(onTimer) clearInterval(onTimer);
     if(timer > 0){
         titleEl.textContent = `${eventText.slice(0,1).toUpperCase() + eventText.slice(1, 20)}...    Timer`;
+        eventEl.textContent = eventText;
         setInterval(tick, 1000)
         popupEl.classList.add('hidden');
     }else{
         alert("oops, You have submitted an Empty or Past date")
+
     }
 })
 
 
 
 
-
-// console.log(eventDate);
-
-
-
-
-// timeIntervel(now, eventDate);
-
-
-
-
-  
-    
-
-
-
-
-
-// console.log(`${dayout}: ${hourout} : ${minout} : ${secout}`);

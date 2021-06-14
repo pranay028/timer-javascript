@@ -61,6 +61,15 @@ body {
   margin-bottom: 0.5rem;
   font-size: 3.5rem;
 }
+
+@media screen and (max-width: 400px) {
+  .input-button {
+    /* border: 1px solid #342d2f; */
+
+    bottom: 3rem;
+    right: 2rem;
+  }
+}
 @media screen and (min-width: 600px) {
   body {
     background-image: url(./bg-image.jpg);
@@ -125,11 +134,18 @@ body {
   width: 25rem;
   /* max-width: 30rem; */
   top: 10rem;
-  /* z-index: 333; */
-  /* transition: all ease-in-out 300ms; */
+  z-index: 100;
+  -webkit-animation: fromtop 400ms 1;
   animation: fromtop 400ms 1;
+}
 
-  /* box-shadow: 5px 5px -2px black; */
+@-webkit-keyframes fromtop {
+  0% {
+    transform: translateY(-20rem);
+  }
+  100% {
+    transform: translateY(0rem);
+  }
 }
 
 @keyframes fromtop {
@@ -138,6 +154,14 @@ body {
   }
   100% {
     transform: translateY(0rem);
+  }
+}
+@-webkit-keyframes totop {
+  0% {
+    transform: translateY(0rem);
+  }
+  100% {
+    transform: translateY(-20rem);
   }
 }
 @keyframes totop {
@@ -151,6 +175,7 @@ body {
 
 .hidden {
   display: none;
+  -webkit-animation: totop 400ms 1;
   animation: totop 400ms 1;
 }
 .custom {
@@ -175,9 +200,6 @@ body {
   min-width: 12rem;
   font-size: 1.3rem;
   border: 1px solid #342d2f;
-
-  /* padding-left: 1rem;
-  padding-right: 1rem; */
 }
 .input:focus {
   color: green;
@@ -221,9 +243,6 @@ input:placeholder-shown {
   grid-template-rows: 1fr;
   text-align: left;
 }
-/* .input span {
-  padding-top: 0.5rem;
-} */
 
 .close {
   position: absolute;
@@ -239,7 +258,7 @@ input:placeholder-shown {
 
 .input-button {
   position: absolute;
-
+  z-index: 30;
   /* border: 1px solid #342d2f; */
   padding: 0.3rem 0.6rem;
   cursor: pointer;
