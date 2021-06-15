@@ -49,7 +49,7 @@ closeEl.addEventListener('click', function(){
 let now = new Date();
 // console.log(now);
 
-let eventDate = new Date(2021, 5, 15,9, 32);
+let eventDate = new Date(2022, 0, 1);
 
 
 const day = 60 * 60 * 24;
