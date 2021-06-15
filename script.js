@@ -21,6 +21,8 @@ const popupEl = document.querySelector(".popup");
 const inputTimeEl = document.querySelector('.input-time')
 // const hiddenEl = document.querySelector('.hidden')
 const bodyEl = document.getElementsByName("body");
+const timerEl = document.querySelector(".timer");
+const timeoutEl = document.querySelector('.timer-out');
 
 inputCustomEl.addEventListener('click', function(){
     // popupEl.style.animation = "none";
@@ -44,10 +46,10 @@ closeEl.addEventListener('click', function(){
 
 // console.log(eventDate);
 
-const now = new Date();
+let now = new Date();
 // console.log(now);
 
-let eventDate = new Date(2022, 0, 1);
+let eventDate = new Date(2021, 5, 15,9, 32);
 
 
 const day = 60 * 60 * 24;
@@ -57,25 +59,41 @@ const min = 60;
 const timeIntervel = (date1, date2) => (date2 - date1)/1000;
 
 let timer = timeIntervel(now, eventDate);
+console.log(eventDate);
+console.log(timer);
+// console.log(D(eventDate));
 // console.log(timer);
+
 const tick = function(){
     const dayout = String(Math.floor(timer / (60 * 60 * 24))).padStart(2, 0);
     const hourout = `${Math.floor((timer - dayout * day)/hour)}`.padStart(2, 0);
     const minout = `${Math.floor((timer - dayout * day - hourout * hour)/min)}`.padStart(2, 0);
     const secout = String(Math.floor(timer - dayout * day - hourout * hour - minout * min)).padStart(2, 0);
     
+    
     dayEl.textContent = dayout;
     hourEl.textContent = hourout;
     minEl.textContent = minout;
     secEl.textContent = secout;
+    if(Math.trunc(timer) == 0){ 
+        clearInterval(onTimer);
+        clearInterval(newTimer);
+        timerEl.style.opacity = 0;
+        timeoutEl.classList.remove('hidden')
+        
+        
+        timeoutEl.textContent = `Count Ended - ${eventDate}`;
+    }
     
-
     timer--;
+    console.log(timer)
 }
 
-const onTimer = setInterval(tick, 1000);
-
-
+let onTimer;
+if(timer > 0) {
+    onTimer = setInterval(tick, 1000);
+}
+let newTimer;
 
 
 submitEl.addEventListener('click', function(e){
@@ -90,26 +108,32 @@ submitEl.addEventListener('click', function(e){
     // console.log(time);
 
     // console.log(new Date(...date));
-    console.log(new Date(...date,...time));
+    // console.log(new Date(...date,...time));
     eventDate = new Date(...date,...time);
-    // console.log(eventDate);
     
     
-
+    now = new Date();
+    timerEl.style.opacity = 100;
+    timeoutEl.classList.add('hidden')
     timer = timeIntervel(now, eventDate);
     // console.log(timer);
     if(onTimer) clearInterval(onTimer);
+    if(newTimer) clearInterval(newTimer)
     if(timer > 0){
         titleEl.textContent = `${eventText.slice(0,1).toUpperCase() + eventText.slice(1, 20)}...    Timer`;
         eventEl.textContent = eventText;
-        setInterval(tick, 1000)
+        newTimer = setInterval(tick, 1000)
         popupEl.classList.add('hidden');
     }else{
         alert("oops, You have submitted an Empty or Past date")
+        
 
     }
+    
 })
 
-
+// setTimeout(() => {
+//     alert("see here")
+// }, 4000);
 
 
