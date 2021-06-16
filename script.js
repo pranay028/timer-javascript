@@ -60,7 +60,7 @@ const timeIntervel = (date1, date2) => (date2 - date1)/1000;
 
 let timer = timeIntervel(now, eventDate);
 console.log(eventDate);
-console.log(timer);
+// console.log(timer);
 // console.log(D(eventDate));
 // console.log(timer);
 
@@ -86,7 +86,7 @@ const tick = function(){
     }
     
     timer--;
-    console.log(timer)
+//     console.log(timer)
 }
 
 let onTimer;
@@ -110,7 +110,7 @@ submitEl.addEventListener('click', function(e){
     // console.log(new Date(...date));
     // console.log(new Date(...date,...time));
     eventDate = new Date(...date,...time);
-    
+    console.log(eventDate);
     
     now = new Date();
     timerEl.style.opacity = 100;
